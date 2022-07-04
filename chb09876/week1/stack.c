@@ -38,7 +38,7 @@ void push(stack *s, int value)
         int *tmp = s->arr;
         s->reserved *= 2;
         s->arr = (int *)malloc(sizeof(int) * s->reserved);
-        memcpy(s->arr, tmp, s->size);
+        memcpy(s->arr, tmp, s->size * sizeof(int));
         free(tmp);
     }
     s->arr[s->size++] = value;

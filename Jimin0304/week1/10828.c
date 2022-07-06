@@ -72,3 +72,42 @@ int Top(Stack* s)
     else
         return (s->elements[(s->size)-1]);
 }
+
+int main()
+{
+    Stack s;
+    int N;
+    char str[6];
+    int item;
+
+    Init(&s);
+    scanf("%d", &N);  //명령어의 수(N)
+
+    for (int count = 0; count < N; ++count)
+    {
+        scanf("%s", str);
+
+        if (!strcmp(str, "push"))
+        {
+            scanf("%d", &item);
+            Push(&s, item);
+        }
+        else if(!strcmp(str, "pop"))
+        {
+            printf("%d\n", Pop(&s));
+        }
+        else if(!strcmp(str, "empty"))
+        {
+            printf("%d\n", Empty(&s));
+        }
+        else if(!strcmp(str, "size"))
+        {
+            printf("%d\n", Size(&s));
+        }
+        else if(!strcmp(str, "top"))
+        {
+            printf("%d\n", Top(&s));
+        }
+    }
+    return 0;
+}

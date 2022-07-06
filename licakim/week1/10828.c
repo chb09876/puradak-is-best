@@ -2,11 +2,12 @@
 #include<string.h>
 #include<stdlib.h>
 
+
 typedef struct
 {
- int max_size;
- int *stackarr;
- int top;
+ int max_size; 
+ int *stackarr; 
+ int top; 
 } STACK;
 
 void init(STACK *a)
@@ -19,7 +20,7 @@ void init(STACK *a)
 int Is_Empty(STACK *a)
 {
 	if(a -> top == -1)
-        	return 1;
+        return 1;
 	else
 		return 0;
 }
@@ -34,7 +35,7 @@ void Top(STACK *a)
 	if(Is_Empty(a))
 		printf("%d\n",-1);
 	else
- 	   printf("%d\n",a->stackarr[a->top]); //top이 가리키는 자료 출력
+ 	   printf("%d\n",a->stackarr[a->top]);
 }
 
 void Pop(STACK *a)
@@ -63,3 +64,49 @@ void Push(STACK* a, int new_data)
 	 a->top = a->top + 1;
      a->stackarr[a->top] = new_data;	  
 }
+
+int main()
+{
+ int n = 0;
+ char s[10];
+ STACK stack; 
+ init(&stack);
+
+ scanf("%d", &n);
+
+ for(int i = 0 ; i<n;i++)
+ {
+    scanf("%s",s);
+
+   if(strcmp(s,"push") == 0)
+    {
+		int num;
+        scanf("%d", &num);
+        Push(&stack, num);
+
+    }
+    else if(strcmp(s,"pop") == 0)
+    {
+        Pop(&stack);
+    }
+    else if(strcmp(s, "top") == 0)
+    {
+        Top(&stack);
+    }
+    else if(strcmp(s, "size") == 0)
+    {
+        Size(&stack);
+    }
+    else if(strcmp(s, "empty") == 0)
+    {
+        if(Is_Empty(&stack))
+			printf("%d\n", 1);
+		else 
+			printf("%d\n", 0);
+    }
+
+ }
+ free(stack.stackarr);
+}
+
+

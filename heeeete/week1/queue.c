@@ -36,8 +36,7 @@ void push(queue *s, int value)
 	    (s->max_size) *= 2;
 	   	s->arr = (int *)realloc(s->arr, sizeof(int) * (s->max_size)); 
     }
-    ㅈㅈ;
-    s->arr[s->rear++] = value;                   // 스택에 값을 넣어주고 ++후위연산
+    s->arr[s->rear = (s->rear + 1) % s->max_size] = value;                   // 스택에 값을 넣어주고 ++후위연산
     s->size += 1;
 }
 
@@ -46,7 +45,7 @@ int pop(queue *s)
 	if(empty(s))                             //비어있으면 -1 return
 		return -1;
     s->size -= 1;
-    return s->arr[(s->start)++];
+    return s->arr[s->start = (s->start + 1) % s->max_size];
 }
 
 int front(queue *s)

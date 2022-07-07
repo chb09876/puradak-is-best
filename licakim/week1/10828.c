@@ -19,10 +19,10 @@ void init(STACK *a)
 
 int Is_Empty(STACK *a)
 {
-	if(a -> top == -1)
+     if(a -> top == -1)
         return 1;
-	else
-		return 0;
+     else
+	return 0;
 }
 
 void Size(STACK *a)
@@ -44,8 +44,8 @@ void Pop(STACK *a)
 	   printf("%d\n", -1);
 	else
 	{
-		Top(a);
-		a->top = a->top - 1;
+	   Top(a);
+	   a->top = a->top - 1;
 	}
 }
 

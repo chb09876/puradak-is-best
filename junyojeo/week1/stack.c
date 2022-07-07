@@ -69,6 +69,6 @@ int main(void)
 			empty();
 		else if (!strcmp(str, "top"))
 			top();
-	}	
+	}
 	return (0);
 }

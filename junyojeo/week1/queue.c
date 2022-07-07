@@ -8,7 +8,7 @@ typedef struct	node
 	struct node	*next;
 }node;
 
-typedef struct	Que
+typedef struct	Que//?
 {
 	node	*front;
 	node	*back;
@@ -60,6 +60,17 @@ void	empty(que *q)
 {
 	if (q->cnt == 0)
 		return (0);
+}
+
+void	front(que *q)
+{
+	if (empty)
+	{
+
+	}
+	else
+		reut
+
 }
 
 int	main(void)

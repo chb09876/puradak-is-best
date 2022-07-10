@@ -29,37 +29,50 @@ int size(queue *s)
     return s->size;
 }
 
+void Realloc(queue *s)
+{
+    int *temp = s->arr;
+    s->arr = (int *)malloc(sizeof(int) * (s->max_size * 2));
+    for(int i = 0 ; i < s->max_size ; i++)
+        s->arr[i] = temp[(s->start + i) % s->max_size];
+    free(temp);
+    s->start = 0;
+    s->rear = s->size;
+    s->max_size *= 2;
+}
+
 void push(queue *s, int value)
 {
 	if (full(s))
-    {
-	    (s->max_size) *= 2;
-	   	s->arr = (int *)realloc(s->arr, sizeof(int) * (s->max_size)); 
-    }
-    s->arr[s->rear = (s->rear + 1) % s->max_size] = value;                   // 스택에 값을 넣어주고 ++후위연산
+        Realloc(s);
     s->size += 1;
+    s->arr[s->rear++] = value;
+    s->rear = s->rear % s->max_size;
 }
 
 int pop(queue *s)
 {
-	if(empty(s))                             //비어있으면 -1 return
-		return -1;
+    if(empty(s))
+        return -1;
+    int start = s->start;
+    s->start = (s->start + 1) % s->max_size;
     s->size -= 1;
-    return s->arr[s->start = (s->start + 1) % s->max_size];
+    return s->arr[start];
 }
 
 int front(queue *s)
 {
-    if (empty(s) == 1)
-        return -1;                          //비어 있으면 -1 반환
+    if (empty(s))
+        return -1;
     return s->arr[(s->start)];                  //stack의 가장 위에 있는 값을 출력
 }
 
 int back(queue *s)
 {
-    if (empty(s) == 1)
+    if (empty(s))
         return -1;
-    s->size -= 1;
+    if (s->rear == 0)
+        return s->arr[s->max_size - 1];
     return s->arr[(s->rear) - 1];
 }
 
@@ -103,6 +116,5 @@ int main()
         else if(strcmp(str , "back") == 0)
             printf("%d\n", back(&s));
     }
-	queue_delete(&s);
     return 0;
 }

@@ -2,91 +2,100 @@
 #include <string.h>
 #include <stdlib.h>
 
-typedef struct	node
+typedef struct queue
 {
-	int			data;
-	struct node	*next;
-}node;
+	int				*data;
+	struct	queue	*next;
+}queue;
 
-typedef struct	Que//원형큐
-{
-	node	*front;
-	node	*back;
-	int		cnt;
-}que;
+queue	*top;
+queue	*rear;
 
-void	init_q(que *q)
+void	init()
 {
-	q->front = NULL;
-	q->back = NULL;
-	q->cnt = 0;
+	top = rear = NULL;
 }
 
-void	push(que *q, int X)
+void	push(int cnt, int *data)
 {
-	node *idx = (node *)malloc(sizeof(node));
-	idx->data = X;
-	idx->next = NULL;
+	queue	*newnode = (queue *)malloc(sizeof(queue));
+	newnode->data = data;
+	newnode->next = rear;
+	if (empty(top))
+		top = newnode;
+	rear = newnode;
+	cnt++;
+}
 
-	if (empty)
-		q->front = idx;
+void	pop()
+{
+	if (empty())
+		printf("-1");
 	else
-		q->back = idx;
-	q->back = idx;
-	q->cnt++;
-}
-
-int	pop(que *q)
-{
-	int tmp;
-	
-	node *idx;
-	if (empty)
-		return (0);
-	idx = q->front;
-	q->front = idx->next;
-	tmp = idx->data;
-	free(idx);
-	q->cnt--;
-	return tmp;
-}
-
-void	size(que *q)
-{
-	return (q->back - q->front);
-}
-
-void	empty(que *q)
-{
-	if (q->cnt == 0)
-		return (0);
-}
-
-void	front(que *q)
-{
-	if (empty)
 	{
-
+		queue *tmp;
+		tmp = top;
+		printf("%d", top->data);
+		top = top->next;
+		free(tmp->data);
 	}
-	else
-		reut
-
 }
 
-int	main(void)
+void	size(int cnt)
 {
-	int i;
-	que q;
+	printf("%d\n", cnt);
+}
 
-	int N;
-	char str[10];
+int	empty()
+{
+	if ( == NULL)
+	{
+		printf("-1");
+		return (1);
+	}
+	return (0);
+}
+
+void	front()
+{
+	if (empty())
+		printf("-1");
+	else
+		printf(top->data);
+}
+
+void	back()
+{
+	if (empty())
+		printf("-1");
+	else
+		printf(rear->data);
+}
+
+
+int main(void)
+{
+	int		N;
+	int		cnt = 0;
+	char	str[10];
 	scanf("%d", &N);
-	
-	init_q(q);
-	for (i = 1; i <= 5; ++i)
-		push(&q, i);
-	while (!isempty(&q))
-		printf("%d ", pop(&q));
-	printf("\n");
+	for (int i = 0; i < N; ++i)
+	{
+		scanf("%s", &str);
+		if (strcmp(str, "push") == 0)
+		{
+			int data;
+			scanf("%d", &data);
+			push(cnt, &data);
+		}
+		else if (strcmp(str, "pop") == 0)
+			pop();
+		else if (strcmp(str, "size") == 0)
+			size(cnt);
+		else if (strcmp(str, "empty") == 0)
+			empty();
+		else if (strcmp(str, "front") == 0)
+			front();
+	}
 	return (0);
 }

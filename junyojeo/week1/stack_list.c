@@ -2,68 +2,60 @@
 #include <string.h>
 #include <stdlib.h>
 
-int	empty()
+typedef struct stack
 {
-	if (top == NULL)
-	{
-		printf("-1");
-		return (1);
-	}
-	return (0);
-}
-
-typedef struct
-{
-	int		*data;
-	stack	*next;
+	int				*data;
+	struct	stack	*next;
 }stack;
 
 stack	*stack_top;
 
-void	push(data)
+void	push(int cnt, int *data)
 {
 	stack	*newnode = (stack *)malloc(sizeof(stack));
 	newnode->data = data;
-	newnode->next = top;
+	newnode->next = stack_top;
 	stack_top = newnode;
+	cnt++;
 }
 
 void	pop()
 {
-	if (empty)
+	if (empty())
 		printf("-1");
 	else
 	{
 		printf("%d", stack_top->data);
-		free(top);
+		free(stack_top);
 	}
 }
 
-void	size(void)
+void	size(int cnt)
 {
-	printf("%d\n", top + 1);
+	printf("%d\n", cnt);
+}
+
+void	top()
+{
+	if (empty())
+		printf("-1");
+	printf("0");
 }
 
 int	empty()
 {
-	if (top == NULL)
+	if (stack_top == NULL)
 	{
 		printf("-1");
 		return (1);
 	}
 	return (0);
-}
-
-void	top()
-{
-	if (empty)
-		printf("-1");
-	printf("0");
 }
 
 int main(void)
 {
 	int		N;
+	int		cnt = 0;
 	char	str[10];
 	scanf("%d", &N);
 	for (int i = 0; i < N; ++i)
@@ -73,12 +65,12 @@ int main(void)
 		{
 			int data;
 			scanf("%d", &data);
-			push();
+			push(cnt, &data);
 		}
 		else if (strcmp(str, "pop") == 0)
 			pop();
 		else if (strcmp(str, "size") == 0)
-			size();
+			size(cnt);
 		else if (strcmp(str, "empty") == 0)
 			empty();
 		else if (strcmp(str, "top") == 0)

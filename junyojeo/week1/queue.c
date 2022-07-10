@@ -8,7 +8,7 @@ typedef struct	node
 	struct node	*next;
 }node;
 
-typedef struct	Que//?
+typedef struct	Que//원형큐
 {
 	node	*front;
 	node	*back;
@@ -53,7 +53,7 @@ int	pop(que *q)
 
 void	size(que *q)
 {
-	return (q->cnt);
+	return (q->back - q->front);
 }
 
 void	empty(que *q)

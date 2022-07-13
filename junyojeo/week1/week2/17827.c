@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 typedef struct node
 {
@@ -8,13 +7,13 @@ typedef struct node
 	int			cnt;
 }node;
 
-
-
 int	main(void)
 {
 	int	N, V, M, C, K, ans;
 	node *node;
 	scanf("%d %d %d", N, M, V);
+	node->cnt = 1;
+	node->data = 0;
 	for (int i = 0; i < N; i++)
 	{
 		scanf("%d", C);
@@ -23,19 +22,17 @@ int	main(void)
 		node->cnt++;
 	}
 	node->next = NULL;
-	int	j = 0;
-	while (j < M)
+	for (int j = 0; j < M; j++)
 	{
 		scanf("%d", K);
 		while (node->next == NULL)
 		{
-			if (node->next->cnt == V)
+			if (node->next->cnt == V && node->next->cnt != 1)
 			{
 				node->next = node;
 			}
 		}
 		printf("%d", node->data);
-		j++;
 	}
 	return (0);
 }

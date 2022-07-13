@@ -91,4 +91,6 @@ int main()
 	DeleteNode(node3, node0);
 	PrintNode(node0);
 	printf("%s", search(node0, 1000));
+
+	return 0;
 }

@@ -140,5 +140,6 @@ int main()
             printf("%d\n", back(&s));
     }
     free(s.arr);
+
     return 0;
 }

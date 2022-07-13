@@ -16,6 +16,11 @@ void	init()
 	top = rear = NULL;
 }
 
+void	add_rear(Deque *q)
+{
+	
+}
+
 void	push(int cnt, int *data)
 {
 	queue	*newnode = (queue *)malloc(sizeof(queue));

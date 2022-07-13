@@ -33,8 +33,9 @@ void Realloc(deque *s)
 {
     int *temp = s->arr;
     s->arr = (int *)malloc(sizeof(int) * (s->max_size * 2));
-    for(int i = 0 ; i <= s->max_size ; i++)
+    for(int i = 0 ; i < s->size ; i++)
         s->arr[i] = temp[(s->start + i) % s->max_size];
+    free(temp);
     s->max_size *= 2;
     s->start = 0;
     s->rear = s->size;
@@ -62,33 +63,33 @@ int pop_back(deque *s)
 {
     if(empty(s))
         return -1;
-    int back = (s->rear);
-    s->rear = (s->rear + 1) % s->max_size;
+    s->rear = (s->rear - 1 + s->max_size) % s->max_size;
     s->size -= 1;
-    return s->arr[back];
+    return s->arr[s->rear];
 }
 
 int pop_front(deque *s)
 {
     if(empty(s))
         return -1;
+    int start = s->start;
     s->start = (s->start + 1) % s->max_size;
     s->size -= 1;
-    return s->arr[s->start];
+    return s->arr[start];
 }
 
 int front(deque *s)
 {
     if (empty(s))
         return -1;
-    return s->arr[(s->start + 1) % s->max_size];
+    return s->arr[s->start];
 }
 
 int back(deque *s)
 {
     if (empty(s))
         return -1;
-    return s->arr[s->rear];
+    return s->arr[(s->rear - 1 + s->max_size) % s->max_size];
 }
 
 void init(deque *s)
@@ -109,7 +110,7 @@ int main()
 {
     deque s;
     int N = 0, value = 0;
-    char str[10];
+    char str[11];
     scanf("%d", &N);
 	init(&s);
     for(int i = 0 ; i < N ; i++)
@@ -138,5 +139,6 @@ int main()
         else if(strcmp(str , "back") == 0)
             printf("%d\n", back(&s));
     }
+    free(s.arr);
     return 0;
 }

@@ -26,7 +26,7 @@ node *AddFirstNode(node *head, int data)
 	return newnode;
 }
 
-node *Insertnode(node *current, int data)
+node *InsertNode(node *current, int data)
 {
 	node *newnode = (node *)malloc(sizeof(node));
 	newnode->data = data;
@@ -90,7 +90,6 @@ int main()
 	node *node3 = InsertNode(node1,400);
 	DeleteNode(node3, node0);
 	PrintNode(node0);
-	printf("%s", search(node0, 1000));
-
+	printf("%s", Search(node0, 1000));
 	return 0;
 }

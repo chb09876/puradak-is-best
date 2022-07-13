@@ -6,7 +6,7 @@ typedef struct node{
 	struct node *next;
 }node;
 
-node *createnode(int data)
+node *CreateNode(int data)
 {
 	node *newnode = (node *)malloc(sizeof(node));
 
@@ -16,7 +16,7 @@ node *createnode(int data)
 	return newnode;
 }
 
-node *addfirst(node *head, int data)
+node *AddFirstNode(node *head, int data)
 {
 	node *newnode = (node *)malloc(sizeof(node));
 
@@ -26,7 +26,7 @@ node *addfirst(node *head, int data)
 	return newnode;
 }
 
-node *insertnode(node *current, int data)
+node *Insertnode(node *current, int data)
 {
 	node *newnode = (node *)malloc(sizeof(node));
 	newnode->data = data;
@@ -36,7 +36,7 @@ node *insertnode(node *current, int data)
 	return newnode;
 }
 
-void printnode(node *head)
+void PrintNode(node *head)
 {
 	while (head)
 	{
@@ -45,17 +45,50 @@ void printnode(node *head)
 	}
 }
 
-void nodemodify(node *NODE, int data)
+void NodeModify(node *NODE, int data)
 {
 	NODE->data = data;
 }
 
+char *Search(node *head, int data)
+{
+	while(head)
+	{
+		if(head->data == data)
+		{
+			return "TRUE\n";
+		}
+		head = head->next;
+	}
+	return "FALSE\n";
+}
+
+void DeleteNode(node *NODE, node *head)
+{
+	if(NODE == head)
+	{
+		free(NODE);
+		return ;
+	}
+	while(head)
+	{
+		if(head->next == NODE)
+		{
+			head->next = NODE->next;
+		}
+		head = head->next;
+	}
+	free(NODE);
+}
+
 int main()
 {
-	node *node1 = createnode(200);
-	node *node0 = addfirst(node1,100);
-	nodemodify(node0,1000);
-	node *node2 = insertnode(node1,300);
-	node *node3 = insertnode(node1,400);
-	printnode(node0);
+	node *node1 = CreateNode(200);
+	node *node0 = AddFirstNode(node1,100);
+	NodeModify(node0,1000);
+	node *node2 = InsertNode(node1,300);
+	node *node3 = InsertNode(node1,400);
+	DeleteNode(node3, node0);
+	PrintNode(node0);
+	printf("%s", search(node0, 1000));
 }

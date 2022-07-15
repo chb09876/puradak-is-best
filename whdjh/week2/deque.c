@@ -12,19 +12,6 @@ typedef struct {
     int count;          //보관 개수
 } dequetype;
 
-void init_deque(dequetype *q, int qsize);
-int is_empty(dequetype *q);
-int is_full(dequetype *q);
-void deque_print(dequetype *q);
-void del_queue(dequetype *q);
-void expand(dequetype *q);
-void add_rear(dequetype *q, int item);
-int delete_front(dequetype *q);
-int size(dequetype *q);
-int delete_rear(dequetype *q);
-void add_front(dequetype *q, int val);
-int main();
-
 //큐 초기화함수
 void init_deque(dequetype *q, int qsize)
 {

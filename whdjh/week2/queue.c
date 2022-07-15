@@ -10,16 +10,6 @@ typedef struct {
     int count;          //보관 개수
 } Queuetype;
 
-void init_queue(Queuetype *q, int qsize);
-int is_empty(Queuetype *q);
-int is_full(Queuetype *q);
-void queue_print(Queuetype *q);
-void expand(Queuetype *q);
-void enqueue(Queuetype *q, int item);
-int dequeue(Queuetype *q);
-int size(Queuetype *q);
-int main();
-
 //큐 초기화함수
 void init_queue(Queuetype *q, int qsize)
 {
@@ -104,10 +94,16 @@ int size(Queuetype *q)
     return (q -> data[((q -> front + 1) % (q -> qsize))]);
 }
 
-
 int front(Queuetype *q)
 {
     return (q -> data[q -> front]);
+}
+
+int back(Queuetype *q)
+{
+    if (q -> rear == 0)
+        return (q -> data[q -> qsize - 1]);
+    return (q -> data[q -> rear - 1]);
 }
 
 int main() 

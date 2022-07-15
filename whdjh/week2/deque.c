@@ -8,17 +8,17 @@
 typedef struct {
     int *data;
     int front, rear;
-    int qsize;          //현재 크기
-    int count;          //보관 개수
+    int qsize;  
+    int count;         
 } dequetype;
 
 //큐 초기화함수
 void init_deque(dequetype *q, int qsize)
 {
     q -> data = (int *)malloc(sizeof(int) * qsize);
-    q -> qsize = qsize;
-    q -> front = q -> rear = 0;
-    q -> count = 0;     //보관개수를 0으로 초기화
+    q -> count = qsize;
+    q -> qsize = 0;
+    q -> front = q -> rear = 0;    
 }
 
 //공백
@@ -30,31 +30,7 @@ int is_empty(dequetype *q)
 //포화
 int is_full(dequetype *q)
 {
-    return ((q -> front) == ((q -> rear + 1) % q -> qsize));
-}
-
-//출력
-void deque_print(dequetype *q)
-{
-    if(is_empty(q))
-    {
-        printf("empty queue\n");
-    }
-    else
-    {
-        printf("queue:");
-        if(!is_empty(q))
-        {
-            int i = q -> front;
-            do {
-                i = ((i + 1) % (q -> qsize));
-                printf("%d | ", q -> data[i]);
-                if (i == q -> rear)
-                    break;
-            } while (i != q -> front);
-            printf("\n");
-        }
-    }
+    return ((q -> front) == ((q -> rear + 1) % q -> count));
 }
 
 //삽입
@@ -63,11 +39,11 @@ void add_rear(dequetype *q, int item)
     if(is_full(q))
     {
         int *tmp = q -> data;
-        q -> data = (int *)malloc(sizeof(int) * (q -> qsize * 2));                                        
-        for (int i = 0; i < q -> count; i++)                           
-            q -> data[i] = tmp[(q -> front + i) % q -> qsize];
+        q -> data = (int *)malloc(sizeof(int) * (q -> count * 2));                                        
+        for (int i = 0; i < q -> qsize; i++)                           
+            q -> data[i] = tmp[(q -> front + i) % q -> count];
         free(tmp);
-        q -> qsize *= 2;
+        q -> count *= 2;
         q -> front = 0;
         q -> rear = q -> count;
         printf("full!!!\n");
@@ -93,9 +69,9 @@ void add_front(dequetype *q, int val)
     if(is_full(q))
     {        
         int *tmp = q -> data;
-        q -> data = (int *)malloc(sizeof(int) * (q -> qsize * 2));                                        
-        for (int i = 0; i < q -> count; i++)                           
-            q -> data[i] = tmp[(q -> front + i) % q -> qsize];
+        q -> data = (int *)malloc(sizeof(int) * (q -> count * 2));                                        
+        for (int i = 0; i < q -> qsize; i++)                           
+            q -> data[i] = tmp[(q -> front + i) % q -> count];
         free(tmp);
         q -> qsize *= 2;
         q -> front = 0;
@@ -103,7 +79,7 @@ void add_front(dequetype *q, int val)
         printf("full!!\n");
     }
     q -> data[q -> front] = val;
-    q -> front = (q -> front - 1 + q -> qsize) % q -> qsize;
+    q -> front = (q -> front - 1 + q -> count) % q -> count;
 }
 
 int delete_rear(dequetype *q)
@@ -114,7 +90,7 @@ int delete_rear(dequetype *q)
         printf("empty!!\n");
         exit(1);
     }
-    q -> rear = (q -> rear - 1 + q -> qsize) % q -> qsize;
+    q -> rear = (q -> rear - 1 + q -> count) % q -> count;
     return (q -> data[prev]);
 }
 
@@ -123,43 +99,17 @@ int size(dequetype *q)
 {
     if(is_empty(q))
         printf("공백\n");
-    return (q -> data[((q -> front + 1) % (q -> qsize))]);
+    return (q -> qsize);
 }
-
 
 int front(dequetype *q)
 {
     return (q -> data[q -> front]);
 }
 
-int main() 
+int back(dequetype *q)
 {
-    dequetype q;
-    init_deque(&q, 100);
-    printf("# ADD FRONT\n\n");
-    for (int i = 0; i < 3; i++)
-    {
-        add_front(&q, i);
-        deque_print(&q);
-    }
-    printf("\n# DELETE REAR\n\n");
-    for (int i = 0; i < 3; i++) 
-    {
-        delete_rear(&q);
-        deque_print(&q);
-    }
-    printf("\n# ADD REAR\n\n");
-    for (int i = 0; i < 3; i++) 
-    {
-        add_rear(&q, i);
-        deque_print(&q);
-    }
-    printf("\n# DELETE FRONT\n\n");
-    for (int i = 0; i < 3; i++) 
-    {
-        delete_front(&q);
-        deque_print(&q);
-    }
-    free(q.data);
-    return 0;
+    if (is_empty(q))
+        return (q -> data[q -> count - 1]);
+    return (q -> data[q -> rear -1]);
 }

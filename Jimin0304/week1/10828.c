@@ -24,7 +24,7 @@ int Empty(Stack* s)
 
 int is_full(Stack* s)
 {
-    if (s->size == (s->stacksize - 1))
+    if (s->size == s->stacksize)
         return (1);
     else
         return (0);

@@ -1,47 +1,67 @@
-#include "stdio.h"
-#include "string.h"
-#define MAX_STACK_SIZE 10000
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
-int stack[MAX_STACK_SIZE];      //스택 배열
-int i_top = -1;                 //인덱스 top, 전역 변수 선언으로 자동으로 -1로 초기화
+typedef struct {
+    int *data;
+    int capacity; //현재 크기
+    int i_top;
+} StackType;
 
-//넣기
-void push(int item)
+//스택 생성 함수
+void init_stack(StackType *s)
 {
-    stack[++i_top] = item;
+    s -> i_top = -1;
+    s -> capacity = 1;
+    s -> data = (int *)malloc(s -> capacity * sizeof(int));
 }
 
-//빼기
-int pop()
+//공백
+int is_empty(StackType *s)
 {
-    if(is_empty())
+    return (s -> i_top == -1);
+}
+
+//포화
+int is_full(StackType *s)
+{
+    return (s -> i_top == (s -> capacity - 1));
+}
+
+//삽입
+void push(StackType *s, int item)
+{
+    if(is_full(s))
+    {
+        s -> capacity *= 2;
+        s -> data = (int *)realloc(s -> data, s -> capacity * sizeof(int));
+    }
+    s -> data[++(s -> i_top)] = item;
+}
+
+//삭제
+int pop(StackType *s)
+{
+    if(is_empty(s))
+    {
         return -1;
-    return (stack[i_top--]);
-}
-
-//스택에 있는 정수
-int size()
-{
-    return (i_top + 1);         //인덱스가 0부터 시작해서 +1 해야됨
-}
-
-//비어있는지 확인
-int is_empty()
-{
-    if(i_top == -1)
-        return 1;
+    }
     else
-        return 0;
+        return (s -> data[(s -> i_top)--]);
 }
 
-//가장 위에 있는게 무엇인가?
-int top()
+int size(StackType *s)
 {
-    if(i_top == -1)
-        return -1;
-    return (stack[i_top]);
+    return (s -> i_top + 1);         //인덱스가 0부터 시작해서 +1 해야됨
 }
 
+int top(StackType *s)
+{
+    if(is_empty(s))
+        return -1;
+    return (s -> data[s -> i_top]);
+}
+//잘못된 접근은 사용자 책임으로
 int main()
 {
     int n;

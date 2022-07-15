@@ -12,10 +12,10 @@ typedef struct{
 
 void init(Queue *a)
 {
- a -> max_size = 10000;
+ a -> max_size = 10;
  a -> queuearr= (int *)malloc(sizeof(int) * a -> max_size);
  a -> front = 0;
- a -> rear = 0;
+ a -> rear = -1;
  a -> size = 0;
 }
 
@@ -29,12 +29,12 @@ int Is_Empty(Queue *a)
 
 void push(Queue *a, int new_data)
 {
-   	if(a->size == a->max_size - 1)
+   	if(a->size == a->max_size)
 	{
 	   int *temp;
        int k;
        temp = (int*)malloc(sizeof(int)*(a->max_size*2));
-	   for(k = 1; k<a->max_size; k++)
+	   for(k = 0; k<a->max_size; k++)
 	       temp[k] = a ->queuearr[(a->front + k)% a->max_size];
 	   a ->max_size = a -> max_size *2;
 	   free(a ->queuearr);
@@ -42,8 +42,8 @@ void push(Queue *a, int new_data)
        a -> front = 0;
        a -> rear = k-1;
     }
-	a->rear = (a->rear +1) % (a->max_size);
-    a->queuearr[a->rear] = new_data;
+	a -> rear = (a->rear +1) % (a->max_size);
+	a -> queuearr[a->rear] = new_data;
 	a -> size = a->size + 1;
 }
 
@@ -53,8 +53,8 @@ void pop(Queue *a)
 	      printf("%d\n", -1);
     else
     {
-	    a->front = (a->front + 1) % (a-> max_size);
 		printf("%d\n", a->queuearr[a->front]);
+		a->front = (a->front + 1) % (a-> max_size);
 		a ->size = a->size -1;
     }   
 }
@@ -64,7 +64,7 @@ void Front(Queue *a)
     if(Is_Empty(a))
 	      printf("%d\n", -1);
     else
-        printf("%d\n",a->queuearr[(a->front)+1]);
+        printf("%d\n",a->queuearr[a->front]);
 }
 
 void Back(Queue *a)
@@ -75,7 +75,6 @@ void Back(Queue *a)
         printf("%d\n",a->queuearr[a->rear]);
 
 }
-
 
 void Size(Queue *a)
 {
@@ -126,5 +125,6 @@ int main()
         Back(&queue);
     }
 }
- free(queue.queuearr);
+  free(queue.queuearr);
 }
+

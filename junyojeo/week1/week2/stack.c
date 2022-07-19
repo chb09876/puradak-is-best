@@ -10,31 +10,32 @@ typedef struct node
 
 typedef struct stack
 {
-	node	*top;
+	node	*last;
 	int		cnt;
 }stack;
 
 void	init(stack *s)
 {
-	s->top = NULL;
+	s->last = NULL;
 }
 
 int	empty(stack *s)
 {
-	if (s->top = NULL)
-	{
-		printf("-1");
-		return (1);
-	}
-	return (0);
+	int	emp;
+	if (s->last == NULL)
+		emp = 1;
+	else
+		emp = 0;
+	printf("%d", emp);
+	return (emp);
 }
 
 void	push(char X, stack *s)
 {
 	node	*tmp = (node *)malloc(sizeof(node));
 	tmp->data = X;
-	tmp->next = s->top;
-	s->top = tmp;
+	tmp->next = s->last;
+	s->last = tmp;
 	s->cnt++;
 }
 
@@ -42,10 +43,10 @@ void	pop(stack *s)
 {
 	if (!empty(s))
 	{
-		stack	*tmp = s->top;
-		
-		printf("%d", s->top->data);
-		s->top = s->top->next;
+		stack	*tmp = s->last;
+		int		data = s->last->data;
+		s->last = s->last->next;
+		printf("%d", data);
 		free(tmp);
 		s->cnt--;
 	}

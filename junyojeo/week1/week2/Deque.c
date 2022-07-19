@@ -2,96 +2,128 @@
 #include <string.h>
 #include <stdlib.h>
 
-typedef struct queue
+typedef struct node
 {
 	int				*data;
-	struct	queue	*next;
-}queue;
+	struct	node	*;
+	struct	node	*;
+}node;
 
-queue	*top;
-queue	*rear;
-
-void	init()
+typedef struct deque
 {
-	top = rear = NULL;
+	deque	*first;
+	deque	*last;
+	int		cnt;
+}deque;
+
+void	init(deque *d)
+{
+	d->first = d->last = NULL;
 }
 
-void	add_rear(Deque *q)
+void	push_front(int X, deque *d)
 {
-	
-}
-
-void	push(int cnt, int *data)
-{
-	queue	*newnode = (queue *)malloc(sizeof(queue));
-	newnode->data = data;
-	newnode->next = rear;
+	node	*tmp = (deque *)malloc(sizeof(deque));
+	tmp->data = X;
+	tmp->next = rear;
 	if (empty(top))
 		top = newnode;
 	rear = newnode;
 	cnt++;
 }
 
-void	pop()
+void	push_back(deque *d)
 {
-	if (empty())
-		printf("-1");
+	
+}
+
+void	pop_front(deque *d)
+{
+	if (empty(d))
+		printf("-1\n")
+	else
+	{
+		printf("%d", d->last->data);
+	}
+}
+
+void	pop_back(deque *d)
+{
+	if (empty(d))
+		printf("-1\n")
+	else
+	{
+		printf("%d", d->last->data);
+	}
+}
+
+void	size(deque *d)
+{
+	printf("%d\n", d->cnt);
+}
+
+int	empty(deque *d)
+{
+	int	emp;
+	if (d->first == NULL)
+		emp = 1;
+	else
+		emp = 0;
+	printf("%d\n", emp);
+	return (emp);
+}
+
+void	front(deque *d)
+{
+	if (empty(d))
+		printf("-1\n");
+	else
+		printf(d->first->data);
+}
+
+void	back(deque *d)
+{
+	if (empty(d))
+		printf("-1\n");
+	else
+		printf(d->last->data);
+}
+
+void	push(int cnt, int *data)
+{
+	
+}
+
+void	pop(deque *d)
+{
+	if (empty(d))
+		printf("-1\n");
 	else
 	{
 		queue *tmp;
 		tmp = top;
-		printf("%d", top->data);
+		printf("%d\n", top->data);
 		top = top->next;
 		free(tmp->data);
 	}
 }
-
-void	size(int cnt)
-{
-	printf("%d\n", cnt);
-}
-
-int	empty()
-{
-	if ( == NULL)
-	{
-		printf("-1");
-		return (1);
-	}
-	return (0);
-}
-
-void	front()
-{
-	if (empty())
-		printf("-1");
-	else
-		printf(top->data);
-}
-
-void	back()
-{
-	if (empty())
-		printf("-1");
-	else
-		printf(rear->data);
-}
-
 
 int main(void)
 {
 	int		N;
 	int		cnt = 0;
 	char	str[10];
+	deque	*d;
+	
 	scanf("%d", &N);
 	for (int i = 0; i < N; ++i)
 	{
 		scanf("%s", &str);
 		if (strcmp(str, "push") == 0)
 		{
-			int data;
-			scanf("%d", &data);
-			push(cnt, &data);
+			int X;
+			scanf("%d", &X);
+			push(X, d);
 		}
 		else if (strcmp(str, "pop") == 0)
 			pop();

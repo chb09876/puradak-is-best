@@ -33,7 +33,7 @@ void Realloc(deque *s)
 {
     int *temp = s->arr;
     s->arr = (int *)malloc(sizeof(int) * (s->max_size * 2));
-    for(int i = 0 ; i < s->size ; i++)
+    for(int i = 0 ; i < s->max_size ; i++)
         s->arr[i] = temp[(s->start + i) % s->max_size];
     free(temp);
     s->max_size *= 2;

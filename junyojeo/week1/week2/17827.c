@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include <stdio.h>
 
 typedef struct node
@@ -7,32 +8,54 @@ typedef struct node
 	int			cnt;
 }node;
 
+void	add_node(node *n, int X)
+{
+	node *tmp = (node *)malloc(sizeof(node));
+	tmp->next = n->next;
+	tmp->data = X;
+	tmp->cnt = n->cnt++;
+	n->next = tmp;
+	n->cnt++;
+}
+
+void	remove_head(node *n)//생각보다 간단한거 기억하기
+{
+	node *tmp = n->next;
+	n->next = tmp->next;
+	free(tmp);
+}
+
 int	main(void)
 {
+	node *n = (node *)malloc(sizeof(node));
+	n->next = NULL;
+	n->cnt = 0;
 	int	N, V, M, C, K, ans;
-	node *node;
 	scanf("%d %d %d", N, M, V);
-	node->cnt = 1;
-	node->data = 0;
 	for (int i = 0; i < N; i++)
 	{
 		scanf("%d", C);
-		node->data = C;
-		node->next = node;
-		node->cnt++;
+		add_node(n, C);
 	}
-	node->next = NULL;
-	for (int j = 0; j < M; j++)
+	n->cnt = 0;
+	remove_head(n);
+	node *cur = n->next;
+	while (cur->next != V)
 	{
+		if (cur->next == V)
+			
+	}
+	for (int j = 0; j < M; j++)
+	{//N - (V-1)
 		scanf("%d", K);
-		while (node->next == NULL)
+		while (K - V + 1 )
 		{
-			if (node->next->cnt == V && node->next->cnt != 1)
+			if (cur->next->cnt == V && cur->next->cnt != 1)
 			{
-				node->next = node;
+				cur->next = cur;
 			}
 		}
-		printf("%d", node->data);
+		printf("%d", cur->data);
 	}
 	return (0);
 }

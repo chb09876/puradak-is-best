@@ -10,48 +10,52 @@ typedef struct node
 
 typedef struct stack
 {
-	node	*last;
+	node	*end;
 	int		cnt;
 }stack;
 
+void	init(stack *s);
+void	empty(stack *s);
+void	push(char X, stack *s);
+void	pop(stack *s);
+void	size(stack *s);
+void	top(stack *s);
+
 void	init(stack *s)
 {
-	s->last = NULL;
+	s->end = NULL;
 }
 
-int	empty(stack *s)
+void	empty(stack *s)
 {
-	int	emp;
-	if (s->last == NULL)
-		emp = 1;
+	if (s->end == NULL)
+		printf("1");
 	else
-		emp = 0;
-	printf("%d", emp);
-	return (emp);
+		printf("0");
 }
 
 void	push(char X, stack *s)
 {
 	node	*tmp = (node *)malloc(sizeof(node));
 	tmp->data = X;
-	tmp->next = s->last;
-	s->last = tmp;
+	tmp->next = s->end;
+	s->end = tmp;
 	s->cnt++;
 }
 
 void	pop(stack *s)
 {
-	if (!empty(s))
+	if (s->end == NULL)
+		printf("-1");
+	else
 	{
-		stack	*tmp = s->last;
-		int		data = s->last->data;
-		s->last = s->last->next;
+		stack	*tmp = s->end;
+		int		data = s->end->data;
+		s->end = s->end->next;
 		printf("%d", data);
 		free(tmp);
 		s->cnt--;
 	}
-	else
-		printf("-1");
 }
 
 void	size(stack *s)
@@ -61,7 +65,7 @@ void	size(stack *s)
 
 void	top(stack *s)
 {
-	if (empty(s))
+	if (s->end == NULL)
 		printf("-1");
 	printf("0");
 }

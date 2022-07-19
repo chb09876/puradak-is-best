@@ -26,7 +26,7 @@ void	push_front(int X, deque *d)
 	node	*tmp = (deque *)malloc(sizeof(deque));
 	tmp->data = X;
 	tmp->next = rear;
-	if (empty(top))
+	if (d->first == NULL)
 		top = newnode;
 	rear = newnode;
 	cnt++;
@@ -39,7 +39,7 @@ void	push_back(deque *d)
 
 void	pop_front(deque *d)
 {
-	if (empty(d))
+	if (d->first == NULL)
 		printf("-1\n")
 	else
 	{
@@ -49,7 +49,7 @@ void	pop_front(deque *d)
 
 void	pop_back(deque *d)
 {
-	if (empty(d))
+	if (d->first == NULL)
 		printf("-1\n")
 	else
 	{
@@ -62,20 +62,17 @@ void	size(deque *d)
 	printf("%d\n", d->cnt);
 }
 
-int	empty(deque *d)
+void	empty(deque *d)
 {
-	int	emp;
 	if (d->first == NULL)
-		emp = 1;
+		printf("1");
 	else
-		emp = 0;
-	printf("%d\n", emp);
-	return (emp);
+		printf("0");
 }
 
 void	front(deque *d)
 {
-	if (empty(d))
+	if (d->first == NULL)
 		printf("-1\n");
 	else
 		printf(d->first->data);
@@ -83,29 +80,10 @@ void	front(deque *d)
 
 void	back(deque *d)
 {
-	if (empty(d))
+	if (d->first == NULL)
 		printf("-1\n");
 	else
 		printf(d->last->data);
-}
-
-void	push(int cnt, int *data)
-{
-	
-}
-
-void	pop(deque *d)
-{
-	if (empty(d))
-		printf("-1\n");
-	else
-	{
-		queue *tmp;
-		tmp = top;
-		printf("%d\n", top->data);
-		top = top->next;
-		free(tmp->data);
-	}
 }
 
 int main(void)

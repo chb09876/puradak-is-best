@@ -8,7 +8,10 @@ typedef struct {
 
 void init(Person *s)
 {
-    s->age = {0,};
+    for(int i = 0 ; i < 200 , i++)
+    {
+        s->age[i] = 0;
+    }
 }
 
 int main()

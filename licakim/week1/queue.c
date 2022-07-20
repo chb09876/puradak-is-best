@@ -29,6 +29,24 @@ int Is_Empty(Queue *a)
 
 void push(Queue *a, int new_data)
 {
+<<<<<<< HEAD
+   	if(a->size == a->max_size )
+	{
+	   int *temp;
+       int k;
+       temp = (int*)malloc(sizeof(int)*(a->max_size*2));
+	   for(k = 0; k<a->max_size; k++)
+	       temp[k] = a ->queuearr[(a->front + k)% a->max_size];
+	   a ->max_size = a -> max_size *2;
+	   free(a ->queuearr);
+	   a -> queuearr = temp;
+       a -> front = 0;
+       a -> rear = k-1;
+    }
+    a->queuearr[a->rear] = new_data;
+    a->rear = (a->rear +1) % (a->max_size);
+	a -> size = a->size + 1;
+=======
      if(a->size == a->max_size)
      {
        int *temp;
@@ -45,10 +63,17 @@ void push(Queue *a, int new_data)
     a->rear = (a->rear +1) % (a->max_size);
     a->queuearr[a->rear] = new_data;
     a -> size = a->size + 1;
+>>>>>>> 41dcd070ceee5a5b2fe82fd1950865e8269f6fb0
 }
 
-void pop(Queue *a)
+int pop(Queue *a)
 {
+<<<<<<< HEAD
+	int temp = a->queuearr[a->front];
+    a->front = (a->front + 1) % (a-> max_size);
+	a ->size = a->size -1;
+	return temp;   
+=======
     if(Is_Empty(a))
 	   printf("%d\n", -1);
     else
@@ -57,26 +82,36 @@ void pop(Queue *a)
 	   a->front = (a->front + 1) % (a-> max_size);
 	   a ->size = a->size -1;
     }   
+>>>>>>> 41dcd070ceee5a5b2fe82fd1950865e8269f6fb0
 }
 
-void Front(Queue *a)
+int Front(Queue *a)
 {
+<<<<<<< HEAD
+    return (a->queuearr[a->front]);
+}	
+
+int Back(Queue *a)
+{
+    return (a->queuearr[a->rear]);
+=======
     if(Is_Empty(a))
 	printf("%d\n", -1);
     else
         printf("%d\n",a->queuearr[a->front]);
+>>>>>>> 41dcd070ceee5a5b2fe82fd1950865e8269f6fb0
 }
 
-void Back(Queue *a)
+int Size(Queue *a)
 {
+<<<<<<< HEAD
+    return (a->size);
+=======
     if(Is_Empty(a))
 	printf("%d\n", -1);
     else
         printf("%d\n",a->queuearr[a->rear]);
 
+>>>>>>> 41dcd070ceee5a5b2fe82fd1950865e8269f6fb0
 }
 
-void Size(Queue *a)
-{
-    printf("%d\n", a->size);
-}

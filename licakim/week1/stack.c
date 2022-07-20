@@ -18,27 +18,43 @@ void init(STACK *a)
 
 int Is_Empty(STACK *a)
 {
+<<<<<<< HEAD
+	if(a -> top == -1)
+        return 1;
+	else
+		return 0;
+=======
    if(a -> top == -1)
         return 1;
    else
 	return 0;
+>>>>>>> 41dcd070ceee5a5b2fe82fd1950865e8269f6fb0
 }
 
-void Size(STACK *a)
+int Size(STACK *a)
 {
-    printf("%d\n",a->top + 1);
+    return (a->top + 1);
 }
 
-void Top(STACK *a)
+int Top(STACK *a)
 {
+<<<<<<< HEAD
+	return(a->stackarr[a->top]); //top이 가리키는 자료 반환
+=======
     if(Is_Empty(a))
 	   printf("%d\n",-1);
     else
  	   printf("%d\n",a->stackarr[a->top]); //top이 가리키는 자료 출력
+>>>>>>> 41dcd070ceee5a5b2fe82fd1950865e8269f6fb0
 }
 
-void Pop(STACK *a)
+int Pop(STACK *a)
 {
+<<<<<<< HEAD
+	int temp = a->stackarr[a->top];
+	a->top = a->top - 1;
+	return temp;
+=======
     if(Is_Empty(a))
 	   printf("%d\n", -1);
     else
@@ -46,6 +62,7 @@ void Pop(STACK *a)
 	   Top(a);
 	   a->top = a->top - 1;
      }
+>>>>>>> 41dcd070ceee5a5b2fe82fd1950865e8269f6fb0
 }
 
 void Push(STACK* a, int new_data)
@@ -60,6 +77,12 @@ void Push(STACK* a, int new_data)
        free(a -> stackarr);
        a ->stackarr = temp;
     }
+<<<<<<< HEAD
+     a->top = a->top + 1;
+     a->stackarr[a->top] = new_data;	  
+=======
     a->top = a->top + 1;
     a->stackarr[a->top] = new_data;	  
+>>>>>>> 41dcd070ceee5a5b2fe82fd1950865e8269f6fb0
 }
+

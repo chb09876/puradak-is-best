@@ -64,7 +64,7 @@ int front(queue *s)
 {
     if (empty(s))
         return -1;
-    return s->arr[(s->start)];                  //stack의 가장 위에 있는 값을 출력
+    return s->arr[(s->start)];
 }
 
 int back(queue *s)

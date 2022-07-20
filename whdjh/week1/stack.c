@@ -61,35 +61,45 @@ int top(StackType *s)
         return -1;
     return (s -> data[s -> i_top]);
 }
-//잘못된 접근은 사용자 책임으로
+
 int main()
 {
-    int n;
-    scanf("%d", &n);
+	StackType s; init_stack(&s);
+	char op[6];
+	int i, n, e;
 
-    for(int i = 0; i < n; i++)
-    {
-        char cmd[10];
-        scanf("%s", cmd);
+	scanf("%d", &n);
 
-        if(!strcmp(cmd, "push"))
-        {
-            int item;
-            scanf("%d\n", &item);
-            push(item);
-        }
+	for (i = 0; i < n; i++)
+	{
+		scanf(" %s", op);
 
-        else if(!strcmp(cmd, "pop"))
-            printf("%d\n", pop());
+		if (strcmp(op, "push") == 0)
+		{
+			scanf(" %d", &e);
+			push(&s, e);
+		}
+		else if (strcmp(op, "pop") == 0)
+		{
+			e = pop(&s);
+			printf("%d\n", e);
+		}
+		else if (strcmp(op, "top") == 0)
+		{
+			e = top(&s);
+			printf("%d\n", e);
+		}
+		else if (strcmp(op, "empty") == 0)
+		{
+			e = is_empty(&s);
+			printf("%d\n", e);
+		}
+		else if (strcmp(op, "size") == 0)
+		{
+			e = size(&s);
+			printf("%d\n", e);
+		}
+	}
 
-        else if(!strcmp(cmd, "size"))
-            printf("%d\n", size());
-
-        else if(!strcmp(cmd, "empty"))
-            printf("%d\n", is_empty());
-            
-        else if(!strcmp(cmd, "top"))
-            printf("%d\n", top());
-    }
-    return 0;
+	return 0;
 }

@@ -6,7 +6,7 @@
 //노드정의
 typedef struct listnode {
     int data;
-    struct listnode *link;  //링크노드를 가르키는 포인터로 정의도며 다음 노드의 주소가 된다.
+    struct listnode *link;  //링크노드를 가르키는 포인터로 정의되며 다음 노드의 주소가 된다.
 } listnode;
 
 //노드생성함수

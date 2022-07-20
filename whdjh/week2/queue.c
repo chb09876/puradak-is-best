@@ -56,7 +56,7 @@ int dequeue(Queuetype *q)
     if(is_empty(q))
     {
         printf("empty!!!\n");
-        exit(1);
+        exit(1);        //극단적조치
     }
     q -> front = ((q -> front + 1) % q -> count);
     return (q -> data[q -> front]);

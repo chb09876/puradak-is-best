@@ -10,7 +10,7 @@ void insertion_sort(int arr[], int N)
 	for(int i = 1 ; i < N ; i++)
 	{
 		key = arr[i];
-		for(j = i - 1; j >= 0 && key <= arr[j]; j--) //J는 0보다 같거나 커야하며 key 값이 arr[j]보다 크면 반복문 종료
+		for(j = i - 1; j >= 0 && key < arr[j]; j--) //J는 0보다 같거나 커야하며 key 값이 arr[j]보다 크면 반복문 종료
 		{
 			arr[j + 1] = arr[j];
 		}
@@ -18,18 +18,10 @@ void insertion_sort(int arr[], int N)
 	}
 }
 
-int main()
+/*	int main()
 {
-	/*	int arr[] = {5,1,2,2,1,6,7,4,6,78,3,5,8,7,6,9,10};
+		int arr[] = {5,1,2,2,1,6,7,4,6,78};
 		insertion_sort(arr, sizeof(arr) / sizeof(int));
 		for(int i = 0 ; i < sizeof(arr) / sizeof(int) ; i++)
-			printf("%d\n", arr[i]);	*/
-	int N;
-	scanf("%d", &N);
-	int arr[N];
-	for(int i = 0 ; i < N ; i++)
-		scanf("%d", &arr[i]);
-	insertion_sort(arr, N);
-	for(int i = 0 ; i<N; i++)
-		printf("%d\n", arr[i]);
-}
+			printf("%d\n", arr[i]);	
+}	*/

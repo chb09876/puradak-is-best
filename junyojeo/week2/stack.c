@@ -29,9 +29,9 @@ void	init(stack *s)
 void	empty(stack *s)
 {
 	if (s->end == NULL)
-		printf("1");
+		printf("1\n");
 	else
-		printf("0");
+		printf("0\n");
 }
 
 void	push(char X, stack *s)
@@ -49,7 +49,7 @@ void	pop(stack *s)
 		printf("-1");
 	else
 	{
-		stack	*tmp = s->end;
+		node	*tmp = s->end;
 		int		data = s->end->data;
 		s->end = s->end->next;
 		printf("%d", data);
@@ -66,24 +66,27 @@ void	size(stack *s)
 void	top(stack *s)
 {
 	if (s->end == NULL)
-		printf("-1");
-	printf("0");
+		printf("-1\n");
+	else
+		printf("%d", s->end->data);
 }
 
 int main(void)
 {
 	int		N;
 	int		cnt = 0;
-	char	*str;
+	char	str[10];
 	stack	*s;
+
+	s = (stack *)malloc(sizeof(stack));
 	scanf("%d", &N);
 	for (int i = 0; i < N; i++)
 	{
 		scanf("%s", str);
 		if (strcmp(str, "push") == 0)
 		{
-			char	X;
-			scanf("%c", &X);
+			int	X;
+			scanf("%d", &X);
 			push(X, s);
 		}
 		else if (strcmp(str, "pop") == 0)

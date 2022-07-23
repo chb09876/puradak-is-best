@@ -75,6 +75,7 @@ void DeleteNode(node *NODE, node *head)
 		if(head->next == NODE)
 		{
 			head->next = NODE->next;
+			break;
 		}
 		head = head->next;
 	}

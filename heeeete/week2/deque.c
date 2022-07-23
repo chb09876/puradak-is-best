@@ -33,7 +33,11 @@ void Realloc(deque *s)
 {
     int *temp = s->arr;
     s->arr = (int *)malloc(sizeof(int) * (s->max_size * 2));
+<<<<<<< HEAD:heeeete/week1/deque.c
     for(int i = 0 ; i < s->size ; i++)
+=======
+    for(int i = 0 ; i < s->max_size ; i++)
+>>>>>>> def4122c6900fb562b860d3664ff91213a0603a7:heeeete/week2/deque.c
         s->arr[i] = temp[(s->start + i) % s->max_size];
     free(temp);
     s->max_size *= 2;
@@ -140,6 +144,9 @@ int main()
             printf("%d\n", back(&s));
     }
     free(s.arr);
+<<<<<<< HEAD:heeeete/week1/deque.c
+=======
 
+>>>>>>> def4122c6900fb562b860d3664ff91213a0603a7:heeeete/week2/deque.c
     return 0;
 }

@@ -81,6 +81,7 @@ void merge(Person *arr, int low, int mid, int high, int N)
     }
 }
 
+
 void mergesort2(Person *arr, int low, int high, int N) //배열을 나누어 주는 함수
 {
     if(low < high)

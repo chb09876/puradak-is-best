@@ -18,6 +18,7 @@ void insertion_sort(int arr[], int N)
 	}
 }
 
+
 /*	int main()
 {
 		int arr[] = {5,1,2,2,1,6,7,4,6,78};

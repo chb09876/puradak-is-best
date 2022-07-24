@@ -43,7 +43,7 @@ void	pop_front(deque *d)
 		printf("-1\n")
 	else
 	{
-		printf("%d", d->last->data);
+		printf("%d\n", d->last->data);
 	}
 }
 
@@ -53,7 +53,7 @@ void	pop_back(deque *d)
 		printf("-1\n")
 	else
 	{
-		printf("%d", d->last->data);
+		printf("%d\n", d->last->data);
 	}
 }
 
@@ -65,9 +65,9 @@ void	size(deque *d)
 void	empty(deque *d)
 {
 	if (d->first == NULL)
-		printf("1");
+		printf("1\n");
 	else
-		printf("0");
+		printf("0\n");
 }
 
 void	front(deque *d)

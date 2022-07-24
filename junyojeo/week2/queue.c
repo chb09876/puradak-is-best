@@ -25,16 +25,17 @@ void	q_delete(queue *q);
 
 void	init(queue *q)
 {
-	q->first = q->last = NULL;
+	q->first = NULL;
+	q->last = NULL;
 	q->cnt = 0;
 }
 
 void	empty(queue *q)
 {
 	if (q->first == NULL)
-		printf("1");
+		printf("1\n");
 	else
-		printf("0");
+		printf("0\n");
 }
 
 void	push(int X, queue *q)//임시 노드 tmp에 X가 들어가고 first, last를 새 노드에 맞게 설정 후 last의 다음 노드에 first를 연결해준다.
@@ -42,7 +43,10 @@ void	push(int X, queue *q)//임시 노드 tmp에 X가 들어가고 first, last�
 	node	*tmp = (node *)malloc(sizeof(node));
 	tmp->data = X;
 	if (q->first == NULL)//큐가 비어있으면 first, last의 값을 새 노드로 바꿔준다.
-		q->first = q->last = tmp;
+	{
+		q->first = tmp;
+		q->last = tmp;
+	}
 	else//큐가 비어있지 않으면 last의 다음 노드에 tmp를 집어넣고 last는 tmp를 가르킨다.
 	{
 		q->last->next = tmp;
@@ -117,10 +121,11 @@ void	q_delete(queue *q)//pop과 비슷하게 동작하지만 노드의 data만 �
 
 int main(void)
 {
-	char	str[13];
+	char	str[10];
 	queue	*q;
 	int		N;
 
+	q = malloc(sizeof(queue));
 	init(q);
 	scanf("%d", &N);
 	for (int i = 0; i < N; ++i)
@@ -143,7 +148,7 @@ int main(void)
 		else if (!strcmp(str, "back"))
 			back(q);
 		else if (!strcmp(str, "q_delete"))
-			queue_delete(q);
+			q_delete(q);
 	}
 	return (0);
 }

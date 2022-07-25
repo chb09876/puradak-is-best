@@ -24,7 +24,7 @@ void merge(int list[], int left, int mid, int right)
             sorted[k++] = list[l];
     }
     for(int l = left; l <= right; l++)
-        list[l] = sorted[l];
+        list[l] = sorted[l] ;
 }
 
 void merge_sort(int list[], int left, int right)
@@ -37,4 +37,4 @@ void merge_sort(int list[], int left, int right)
         merge_sort(list, mid + 1, right);
         merge(list, left, mid, right);
     }
-}
+} 

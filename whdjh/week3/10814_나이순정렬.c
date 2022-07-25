@@ -4,6 +4,7 @@ typedef struct {
     int age;
     char name[201];
 } member;
+   
 member  list[100001];
 
 int main()

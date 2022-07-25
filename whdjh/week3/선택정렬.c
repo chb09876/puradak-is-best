@@ -7,7 +7,6 @@ void selection_sort(int list[], int n)      //1 ~ n - 1까지 비교기때문에
 	int least, temp;
 	for(int i = 0; i < n - 1; i++)      //마지막 인덱스는 다 돌면서 정해지기 때문이다.      
 	{
-		least = i;
 		for(int j = i + 1; j < n; j++)      //최솟값찾기
         {
             if(list[i] > list[j])      

@@ -4,8 +4,7 @@ long long gcd(long long A, long long B)
 {
 	if (B == 0)
 		return (A);
-	else
-		return (gcd(B, A % B));
+	return (gcd(B, A % B));
 }
 
 int main(void)

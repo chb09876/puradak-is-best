@@ -130,6 +130,7 @@ Node *search_list(Node *list,int value)
     return NULL;//탐색실패
 }
 
+\
 
 
 //수정
